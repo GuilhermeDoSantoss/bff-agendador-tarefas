@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static sun.security.jgss.GSSUtil.login;
+
 
 @Service
 @RequiredArgsConstructor
@@ -30,10 +32,10 @@ public class CronService {
 
     @Scheduled(cron = "${cron.horario}")
 
-    public void buscaTarefasProximaHora(){
-        String token = login(converterParaRequestDTO());
+    public void buscaTarefasProximaHora() {
+        public LoginRequestDTO converterParaRequestDTO String token = login(converterParaRequestDTO());
         log.info("Iniciada a busca de tarefas");
-        LocalDateTime  horaFutura = LocalDateTime.now().plusHours(1);
+        LocalDateTime horaFutura = LocalDateTime.now().plusHours(1);
         LocalDateTime horaFuturaMaisCinco = LocalDateTime.now().plusHours(1).plusMinutes(5);
 
         List<TarefasDTOResponse> listaTarefas = tarefasService.buscaTarefasAgendadasPorPeriodo
@@ -46,14 +48,10 @@ public class CronService {
                     token);
         });
         log.info("Finalizada a busca e notificaçao dee tarefas");
-    public String login(LoginRequestDTO dto){
-        return usuarioService.loginUsuario(dto);
+        public String login (LoginRequestDTO dto){
+            return usuarioService.loginUsuario(dto);
+        }
+
     }
 
-    public LoginRequestDTO converterParaRequestDTO(){
-        return LoginRequestDTO.builder()
-                .email(email)
-                .senha(senha)
-                .build();
-    }
 }

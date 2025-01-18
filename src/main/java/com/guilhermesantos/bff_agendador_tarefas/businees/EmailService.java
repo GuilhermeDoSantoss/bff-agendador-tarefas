@@ -13,8 +13,9 @@ public class EmailService {
 
     private final EmailClient emailClient;
 
-    public void enviaEmail gravarTarefa(TarefasDTOResponse dto) {
+    public void enviaEmail; void gravarTarefa(TarefasDTOResponse dto) {
         emailClient.enviarEmail(dto);
     }
+
 }
 
