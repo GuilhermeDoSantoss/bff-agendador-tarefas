@@ -8,6 +8,7 @@ import com.guilhermesantos.bff_agendador_tarefas.businees.DTO.in.UsuarioDTOReque
 import com.guilhermesantos.bff_agendador_tarefas.businees.DTO.out.EnderecoDTOResponse;
 import com.guilhermesantos.bff_agendador_tarefas.businees.DTO.out.TelefoneDTOResponse;
 import com.guilhermesantos.bff_agendador_tarefas.businees.DTO.out.UsuarioDTOResponse;
+import com.guilhermesantos.bff_agendador_tarefas.businees.DTO.out.ViaCepDTOResponse;
 import com.guilhermesantos.bff_agendador_tarefas.infrastructure.client.UsuarioClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,12 @@ public class UsuarioService {
 
 
     public UsuarioDTOResponse salvaUsuario(UsuarioDTORequest usuarioDTO) {
+
         return client.salvaUsuario(UsuarioDTO);
     }
 
     public UsuarioDTOResponse loginUsuario(LoginRequestDTO dto){
+
         return client.login(dto);
     }
 
@@ -57,4 +60,7 @@ public class UsuarioService {
         return client.cadastraTelefone(dto, token);
     }
 
+    public ViaCepDTOResponse buscarEnderecoPorCep(String cep){
+        return client.buscarDadosCep(cep);
+    }
 }
